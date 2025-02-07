@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tickets</title>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/magazines}">Magazines</a>
+        <a th:href="@{/publications}">Publications</a>
+        <a th:href="@{/discMags}">Disc Mags</a>
+        <a th:href="@{/tickets}">Tickets</a>
+    </nav>
+</head>
+<body>
+<h2>Tickets</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Text</th>
+    </tr>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${ticket.description}"></td>
+        <td th:text="${ticket.text}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Disc Mags</title>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/books}">Books</a>
+    <a th:href="@{/cart}">Cart</a>
+    <a th:href="@{/magazines}">Magazines</a>
+    <a th:href="@{/publications}">Publications</a>
+    <a th:href="@{/discMags}">Disc Mags</a>
+    <a th:href="@{/tickets}">Tickets</a>
+  </nav>
+</head>
+<body>
+<h2>Disc Mags</h2>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Has Disc</th>
+  </tr>
+  <tr th:each="discMag : ${discMags}">
+    <td th:text="${discMag.id}"></td>
+    <td th:text="${discMag.title}"></td>
+    <td th:text="${discMag.hasDisc}"></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout</title>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/magazines}">Magazines</a>
+        <a th:href="@{/publications}">Publications</a>
+        <a th:href="@{/discMags}">Disc Mags</a>
+        <a th:href="@{/tickets}">Tickets</a>
+    </nav>
+</head>
+<body>
+<h2>Checkout Summary</h2>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+    </tr>
+    <tr th:each="cartItem : ${purchasedItems}">
+        <td th:text="${cartItem.title}"></td>
+        <td th:text="${cartItem.quantity}"></td>
+        <td th:text="${cartItem.price}"></td>
+        <td th:text="${cartItem.quantity * cartItem.price}"></td>
+    </tr>
+</table>
+
+<h3>Total Amount Paid: <span th:text="${totalAmount}"></span></h3>
+
+<a href="/books">Continue Shopping</a>
+</body>
+</html>

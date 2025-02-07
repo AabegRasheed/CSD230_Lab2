@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to NOT Simple E-Commerce</h1>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/magazines}">Magazines</a>
+        <a th:href="@{/publications}">Publications</a>
+        <a th:href="@{/discMags}">Disc Mags</a>
+        <a th:href="@{/tickets}">Tickets</a>
+    </nav>
+</header>
+
+<main>
+    <h2>BOOKS</h2>
+    <p><a th:href="@{/books/add-book}">Add new book</a></p>
+
+    <form th:action="@{/books/selection}" method="post" onsubmit="return checkSelection('selectedBooks');">
+        <table border="1">
+            <tr>
+                <th>Select</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td><input type="checkbox" name="selectedBooks" th:value="${book.id}"/></td>
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="'$' + ${book.price}"></td>
+                <td th:text="${book.description}"></td>
+                <td><a th:href="@{/books/edit-book(id=${book.id})}">edit...</a></td>
+            </tr>
+        </table>
+
+        <button type="submit">Delete selected books...</button>
+    </form>
+
+    <form th:action="@{/cart/add}" method="post" onsubmit="return checkSelection('selectedBooks');">
+        <button type="submit">Add to Cart</button>
+    </form>
+
+</main>
+
+<script>
+    function checkSelection() {
+        let checkboxes = document.querySelectorAll('input[name="selectedBooks"]:checked');
+        if (checkboxes.length === 0) {
+            alert("Please select at least one book.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<footer>
+    <p>&copy; 2024 Simple E-Commerce. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
